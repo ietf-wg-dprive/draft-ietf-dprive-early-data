@@ -26,17 +26,17 @@ reduce those risks.
 
 TLS 1.3 {{?TLS13=RFC8446}} defines a mechanism, called 0-RTT session resumption
 or early data, that allows clients to send data to servers in the first
-round-trip of a connection without having to wait for the TLS handshake to
-complete.
+round-trip of a resumed connection without having to wait for the TLS handshake
+to complete.
 
 This can be used to send DNS queries to DNS over TLS {{!DOT=RFC7858}} servers
-without incurring in the cost of the additional round-trip required by the
-TLS handshake, and it can be useful in cases where new DNS over TLS connections
-need to be established often such as on mobile clients where the network might
-not be stable, or on resolvers where keeping an open connection to many
-authoritative servers might not be practical.
+without incurring in the cost of the additional round-trip required by the TLS
+handshake. This can provide significant performance improvements in cases where
+new DNS over TLS connections need to be established often such as on mobile
+clients where the network might not be stable, or on resolvers where keeping an
+open connection to many authoritative servers might not be practical.
 
-However, the use of early data allows an attacker to capture and replay the
+However the use of early data allows an attacker to capture and replay the
 encrypted DNS queries carried on the TLS connection. This can have unwanted
 consequences and help in recovering information about those queries. While
 {{!TLS13}} describes tecniques to reduce the likelihood of a replay attack,
@@ -51,7 +51,11 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Early Data in DNS over TLS
 
-TODO: talk more about 0-RTT vs. 1-RTT security properties.
+Early data forms a single stream of data along with other application data,
+meaning that one or more DNS queries can either be partially or fully contained
+within early data. Once the TLS handshake has completed, the early data is known
+to not be a replayed copy of that data, but this doesn't mean that it can't be
+replayed, or that it hasn't already been replayed, in another connection.
 
 A server can signal to clients whether it is willing to accept early data in
 future connections by providing the "early_data" TLS extension as part of a TLS
@@ -70,8 +74,13 @@ data, such as the negotiated protocol {{?ALPN=RFC7301}}. Any DNS queries sent
 in early data will need to be sent again, unless the client decides to abandon
 them.
 
-TODO: forbid sending DNS updates in early data (RFC2136)? XFR? Other query
-types?
+Not all types of DNS queries are safe to be sent as early data. Clients MUST
+NOT use early data to send DNS Updates ({{?RFC2136}}) or Zone Transfers
+({{?RFC5936}}) messages. Servers receiving any of those messages MUST reply with
+a "FormErr" response code.
+
+[[TODO: forbid other types? use a different status code? should we define a
+  whitelist instead of a blacklist?]]
 
 # Security Considerations
 
@@ -102,7 +111,9 @@ forced to retry them after the handshake is completed.
 
 ## Privacy
 
-TODO: linkability (e.g. clients changing network, ...) and more?
+TBD
+
+[[TODO: linkability (e.g. clients changing network, ...) and more?]]
 
 ## Acknowledgments
 
