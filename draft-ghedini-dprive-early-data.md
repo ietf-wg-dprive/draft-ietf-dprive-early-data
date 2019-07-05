@@ -106,5 +106,6 @@ TODO: linkability (e.g. clients changing network, ...) and more?
 
 ## Acknowledgments
 
-This document was heavily inspired by {{?RFC8470}}. Daniel Kahn Gillmor and Colm
-MacCárthaigh also provided important ideas and contributions.
+Thanks to Martin Thomson, Mark Nottingham and Willy Tarreau for writing
+{{?RFC8470}} which heavily inspired this document, and to Daniel Kahn Gillmor
+and Colm MacCárthaigh who also provided important ideas and contributions.
