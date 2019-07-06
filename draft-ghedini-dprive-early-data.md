@@ -119,7 +119,7 @@ TBD
 
 This document has no actions for IANA.
 
-## Acknowledgments
+# Acknowledgments
 
 Thanks to Martin Thomson, Mark Nottingham and Willy Tarreau for writing
 {{?RFC8470}} which heavily inspired this document, and to Daniel Kahn Gillmor
