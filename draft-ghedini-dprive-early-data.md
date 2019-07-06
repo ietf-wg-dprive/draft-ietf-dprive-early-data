@@ -1,6 +1,6 @@
 ---
 title: Using Early Data in DNS over TLS
-docname: draft-ghedini-dprive-early-data
+docname: draft-ghedini-dprive-early-data-latest
 abbrev: DNS Early Data
 category: std
 
