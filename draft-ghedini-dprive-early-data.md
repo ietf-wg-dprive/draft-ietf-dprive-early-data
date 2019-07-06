@@ -77,12 +77,17 @@ them.
 Not all types of DNS queries are safe to be sent as early data. Clients MUST
 NOT use early data to send DNS Updates ({{?RFC2136}}) or Zone Transfers
 ({{?RFC5936}}) messages. Servers receiving any of those messages MUST reply with
-a "FormErr" response code.
+a "FormErr" response code. Servers MAY log those suspicious messages
+including their sender's address.
 
 [[TODO: forbid other types? use a different status code? should we define a
   whitelist instead of a blacklist?]]
 
 # Security Considerations
+
+This whole document discusses the security implications of using
+TLS 1.3 early data extension with DNS. It also offers different
+solutions for each aspect.
 
 ## Information Exposure
 
