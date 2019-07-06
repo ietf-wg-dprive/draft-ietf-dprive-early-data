@@ -115,6 +115,10 @@ TBD
 
 [[TODO: linkability (e.g. clients changing network, ...) and more?]]
 
+# IANA Considerations
+
+This document has no actions for IANA.
+
 ## Acknowledgments
 
 Thanks to Martin Thomson, Mark Nottingham and Willy Tarreau for writing
