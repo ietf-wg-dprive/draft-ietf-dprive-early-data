@@ -109,12 +109,6 @@ the replay of queries that might be expensive to handle.
 When under load, a server MAY reject TLS early data such that the client is
 forced to retry them after the handshake is completed.
 
-## Privacy
-
-TBD
-
-[[TODO: linkability (e.g. clients changing network, ...) and more?]]
-
 # IANA Considerations
 
 This document has no actions for IANA.
