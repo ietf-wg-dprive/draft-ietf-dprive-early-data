@@ -95,9 +95,9 @@ DNS query and observing the order of RRs in DNS responses before and after the
 replayed query, might allow the attacker to confirm whether the query targeted
 a specific name that was suspected of being queried.
 
-Servers SHOULD either use fixed ordering for multiple RRs in the same DNS
-response or shuffle the RRs at random, but MUST NOT use stateful and
-deterministic ordering across multiple queries.
+When accepting early data, servers SHOULD either use fixed ordering for multiple
+RRs in the same DNS response or shuffle the RRs at random, but MUST NOT use
+stateful and deterministic ordering across multiple queries.
 
 ## Denial of Service
 
