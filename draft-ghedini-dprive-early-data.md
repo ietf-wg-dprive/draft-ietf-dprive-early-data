@@ -74,13 +74,11 @@ data, such as the negotiated protocol {{?ALPN=RFC7301}}. Any DNS queries sent
 in early data will need to be sent again, unless the client decides to abandon
 them.
 
-Not all types of DNS queries are safe to be sent as early data. Clients MUST
-NOT use early data to send DNS Updates ({{?RFC2136}}) or Zone Transfers
-({{?RFC5936}}) messages. Servers receiving any of those messages MUST reply with
-a "FormErr" response code.
-
-[[TODO: forbid other types? use a different status code? should we define a
-  whitelist instead of a blacklist?]]
+Not all types of DNS messages are safe to be sent as early data, as they might
+modfify the server's state, or expose sensitive data, through replay. Clients
+MUST NOT use early data to send messages that make use of opcodes other than
+"Query" and RR types not listed in the registry defined in {{registry}}. Servers
+receiving any of those messages MUST reply with a "FormErr" response code.
 
 # Security Considerations
 
@@ -112,6 +110,36 @@ forced to retry them after the handshake is completed.
 # IANA Considerations
 
 This document has no actions for IANA.
+
+## Registry for DNS Resource Record (RR) TYPEs for TLS Early Data {#registry}
+
+This document establishes a registry of DNS RR types that can be used within
+TLS early data, titled "DNS Resource Record (RR) TYPEs for Use with TLS Early
+Data", under the existing "Domain Name System (DNS) Parameters" heading.
+
+The entries in the registry are:
+
+| TYPE   | Reference       |
+|:-------|:----------------|
+| A      | [this document] |
+| NS     | [this document] |
+| CNAME  | [this document] |
+| SOA    | [this document] |
+| PTR    | [this document] |
+| MX     | [this document] |
+| TXT    | [this document] |
+| AAAA   | [this document] |
+| SRV    | [this document] |
+| DNAME  | [this document] |
+| DS     | [this document] |
+| DNSKEY | [this document] |
+
+The values in this registry MUST correspond to existing entries in the
+"Resource Record (RR) TYPEs" registry. Specifically, the value of the "TYPE"
+column for each entry in this new registry MUST match the value of the "TYPE"
+column of an entry in the "Resource Record (RR) TYPEs" registry.
+
+--- back
 
 # Acknowledgments
 
