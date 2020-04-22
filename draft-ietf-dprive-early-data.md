@@ -1,8 +1,9 @@
 ---
 title: Using Early Data in DNS over TLS
-docname: draft-ghedini-dprive-early-data-latest
+docname: draft-ietf-dprive-early-data-latest
 abbrev: DNS Early Data
 category: std
+workgroup: DPRIVE
 
 stand_alone: yes
 pi: [toc, sortrefs, symrefs, docmapping]
