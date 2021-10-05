@@ -1,4 +1,4 @@
 # License
 
 See the
-[guidelines for contributions](https://github.com/ghedo/draft-ghedini-dprive-early-data/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/bemasc/draft-ghedini-dprive-early-data/blob/master/CONTRIBUTING.md).
